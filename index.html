@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Screen Text Writer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: #8000ff;
+            font-family: monospace;
+            font-size: 18px;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        #text-container {
+            padding: 20px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            outline: none;
+            caret-color: #8000ff;
+            height: calc(100vh - 40px);
+            width: calc(100vw - 40px);
+            overflow-y: auto;
+        }
+        #cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background-color: #8000ff;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="text-container" contenteditable="true" spellcheck="false" autofocus></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textContainer = document.getElementById('text-container');
+            
+            // Focus on the text container when the page loads
+            textContainer.focus();
+            
+            // Prevent right-click context menu
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+            
+            // Handle keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Allow Ctrl+A (Select All)
+                if (e.ctrlKey && e.key === 'a') {
+                    return true;
+                }
+                
+                // Allow Ctrl+C (Copy)
+                if (e.ctrlKey && e.key === 'c') {
+                    return true;
+                }
+                
+                // Allow Ctrl+V (Paste)
+                if (e.ctrlKey && e.key === 'v') {
+                    return true;
+                }
+                
+                // Allow Ctrl+Z (Undo)
+                if (e.ctrlKey && e.key === 'z') {
+                    return true;
+                }
+                
+                // Allow Ctrl+Y (Redo)
+                if (e.ctrlKey && e.key === 'y') {
+                    return true;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
