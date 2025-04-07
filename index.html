@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Screen Text Writer</title>
+    <title>Welcome to Text Writer</title>
     <style>
         body {
             margin: 0;
@@ -11,91 +11,45 @@
             background-color: black;
             color: #8000ff;
             font-family: monospace;
-            font-size: 18px;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            width: 100vw;
+            text-align: center;
         }
-        #text-container {
-            padding: 20px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            outline: none;
-            caret-color: #8000ff;
-            height: calc(100vh - 40px);
-            width: calc(100vw - 40px);
-            overflow-y: auto;
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 5px #8000ff;
         }
-        #cursor {
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+        .enter-button {
             display: inline-block;
-            width: 10px;
-            height: 18px;
-            background-color: #8000ff;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        #home-link {
-            position: fixed;
-            top: 10px;
-            right: 10px;
+            padding: 12px 24px;
+            background-color: transparent;
             color: #8000ff;
+            border: 2px solid #8000ff;
             text-decoration: none;
-            font-size: 14px;
-            opacity: 0.7;
-            transition: opacity 0.3s;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
-        #home-link:hover {
-            opacity: 1;
+        .enter-button:hover {
+            background-color: #8000ff;
+            color: black;
+            box-shadow: 0 0 15px #8000ff;
         }
     </style>
 </head>
 <body>
-    <div id="text-container" contenteditable="true" spellcheck="false" autofocus></div>
-    <a id="home-link" href="index.html">Return Home</a>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const textContainer = document.getElementById('text-container');
-            
-            // Focus on the text container when the page loads
-            textContainer.focus();
-            
-            // Prevent right-click context menu
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-            });
-            
-            // Handle keyboard shortcuts
-            document.addEventListener('keydown', function(e) {
-                // Allow Ctrl+A (Select All)
-                if (e.ctrlKey && e.key === 'a') {
-                    return true;
-                }
-                
-                // Allow Ctrl+C (Copy)
-                if (e.ctrlKey && e.key === 'c') {
-                    return true;
-                }
-                
-                // Allow Ctrl+V (Paste)
-                if (e.ctrlKey && e.key === 'v') {
-                    return true;
-                }
-                
-                // Allow Ctrl+Z (Undo)
-                if (e.ctrlKey && e.key === 'z') {
-                    return true;
-                }
-                
-                // Allow Ctrl+Y (Redo)
-                if (e.ctrlKey && e.key === 'y') {
-                    return true;
-                }
-            });
-        });
-    </script>
+    <h1>Black Screen Text Writer</h1>
+    <p>A minimalist writing experience with a retro aesthetic. Focus on your thoughts with our distraction-free text editor.</p>
+    <a href="editor.html" class="enter-button">Enter Editor</a>
 </body>
 </html>
