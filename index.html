@@ -14,11 +14,26 @@
         body {
             width: 100vw;
             height: 100vh;
-            gap: 15px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             background: #000000;
+            gap: 30px;
+        }
+        
+        .clock {
+            font-size: 72px;
+            font-family: 'Courier New', monospace;
+            color: #ffffff;
+            background: #000000;
+            padding: 30px 50px;
+            letter-spacing: 5px;
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 15px;
         }
         
         .button {
@@ -50,14 +65,33 @@
             display: inline-block;
             transition: background 0.3s ease;
         }
-
+        
         .button2:hover {
             background: #588db8;
         }
     </style>
 </head>
 <body>
-    <a href="Background/index.html" class="button">View Wallpaper</a>
-    <a href="https://duckduckgo.com/" class="button2">Search</a> 
+    <div class="clock" id="clock">00:00:00</div>
+    
+    <div class="button-container">
+        <a href="Background/index.html" class="button">View Wallpaper</a>
+        <a href="https://duckduckgo.com/" class="button2">Search</a>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        
+        updateClock();
+        
+        setInterval(updateClock, 1000);
+    </script>
 </body>
 </html>
